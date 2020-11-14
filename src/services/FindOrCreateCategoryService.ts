@@ -14,7 +14,7 @@ class FindOrCreateCategoryService {
 
     if (!category) {
       category = categoryRepository.create({ title });
-      categoryRepository.save(category);
+      await categoryRepository.save(category);
     }
 
     return category;

@@ -2,7 +2,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  Generated,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -10,10 +9,9 @@ import {
 } from 'typeorm';
 import Category from './Category';
 
-@Entity({ name: 'transaction' })
+@Entity({ name: 'transactions' })
 class Transaction {
-  @PrimaryGeneratedColumn()
-  @Generated('uuid')
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
@@ -29,7 +27,7 @@ class Transaction {
   // category_id: string;
 
   @ManyToOne(() => Category, { eager: true })
-  @JoinColumn({ name: 'category_id' })
+  @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
   category?: Category;
 
   @CreateDateColumn()
